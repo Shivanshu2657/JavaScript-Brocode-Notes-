@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice Projects</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f1f5f9;
+            color: #172033;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #ddd;
+            z-index: 10;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            color: #3659e3;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 1px solid #dfe5ef;
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #1d3a9b;
+        }
+
+        button {
+            background: #3659e3;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            margin: 4px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #233fba;
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 4px;
+            max-width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        .result {
+            font-weight: bold;
+            color: #1d3a9b;
+            overflow-wrap: anywhere;
+        }
+
+        .slide {
+            display: none;
+            padding: 45px 10px;
+            background: #e0e7ff;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 8px;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .clock {
+            font-size: 32px;
+            font-weight: bold;
+            font-variant-numeric: tabular-nums;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            nav {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>JavaScript Practice Projects</h1>
+    <p>15 beginner-friendly interactive projects</p>
+</header>
+
+<nav>
+    <a href="#image-slider">Image Slider</a>
+    <a href="#rps">Rock Paper Scissors</a>
+    <a href="#events">Events</a>
+    <a href="#lists">DOM Lists</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#stopwatch">Stopwatch</a>
+    <a href="#clock">Digital Clock</a>
+    <a href="#timeout">Timeout</a>
+    <a href="#password">Password</a>
+    <a href="#dice">Dice</a>
+    <a href="#temperature">Temperature</a>
+    <a href="#guess">Guessing Game</a>
+    <a href="#chaining">Method Chaining</a>
+    <a href="#reminder">Day Reminder</a>
+    <a href="#payment">Payment</a>
+</nav>
+
+<main>
+
+    <!-- 1. IMAGE SLIDER -->
+    <section id="image-slider">
+        <h2>1. Image Slider</h2>
+        <p>Practice DOM selection, arrays, and event listeners.</p>
+
+        <div class="slide active">Slide 1 — 🌄 Landscape</div>
+        <div class="slide">Slide 2 — 🌊 Ocean</div>
+        <div class="slide">Slide 3 — 🌌 Night Sky</div>
+
+        <button onclick="changeSlide(-1)">Previous</button>
+        <button onclick="changeSlide(1)">Next</button>
+        <p id="slideStatus" class="result">1 / 3</p>
+    </section>
+
+    <!-- 2. ROCK PAPER SCISSORS -->
+    <section id="rps">
+        <h2>2. Rock Paper Scissors</h2>
+        <p>Practice random numbers, conditions, and event handling.</p>
+
+        <button onclick="playRPS('rock')">✊ Rock</button>
+        <button onclick="playRPS('paper')">✋ Paper</button>
+        <button onclick="playRPS('scissors')">✌️ Scissors</button>
+
+        <p id="rpsResult" class="result">Choose your move.</p>
+        <p id="rpsScore">You: 0 | Computer: 0 | Ties: 0</p>
+
+        <button onclick="resetRPS()">Reset Score</button>
+    </section>
+
+    <!-- 3. EVENT BUTTONS -->
+    <section id="events">
+        <h2>3. Event Buttons</h2>
+        <p>Practice click events and changing HTML elements.</p>
+
+        <p id="eventText">Click a button to change this message.</p>
+
+        <button onclick="changeText()">Change Text</button>
+        <button onclick="changeColor()">Change Color</button>
+        <button onclick="countClicks()">Click Count: 0</button>
+    </section>
+
+    <!-- 4. DOM LISTS -->
+    <section id="lists">
+        <h2>4. DOM Lists</h2>
+        <p>Practice creating and removing elements.</p>
+
+        <input id="listInput" placeholder="Enter a list item">
+        <button onclick="addItem()">Add Item</button>
+        <button onclick="clearItems()">Clear List</button>
+
+        <ul id="itemList">
+            <li>Example item</li>
+        </ul>
+    </section>
+
+    <!-- 5. CALCULATOR -->
+    <section id="calculator">
+        <h2>5. Basic Calculator</h2>
+        <p>Practice input values, arithmetic operators, and switch statements.</p>
+
+        <input type="number" id="num1" placeholder="First number">
+
+        <select id="operator">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="/">Division (/)</option>
+            <option value="%">Remainder (%)</option>
+        </select>
+
+        <input type="number" id="num2" placeholder="Second number">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <p id="calcResult" class="result">Result will appear here.</p>
+    </section>
+
+    <!-- 6. STOPWATCH -->
+    <section id="stopwatch">
+        <h2>6. Stopwatch</h2>
+        <p>Practice setInterval(), elapsed time, and clearInterval().</p>
+
+        <div id="stopwatchDisplay" class="clock">00:00.0</div>
+
+        <button onclick="startStopwatch()">Start</button>
+        <button onclick="stopStopwatch()">Stop</button>
+        <button onclick="resetStopwatch()">Reset</button>
+    </section>
+
+    <!-- 7. DIGITAL CLOCK -->
+    <section id="clock">
+        <h2>7. Digital Clock</h2>
+        <p>Practice Date objects and setInterval().</p>
+
+        <div id="digitalClock" class="clock"></div>
+        <p id="clockDate"></p>
+    </section>
+
+    <!-- 8. SETTIMEOUT -->
+    <section id="timeout">
+        <h2>8. setTimeout Demo</h2>
+        <p>Practice delayed actions and clearTimeout().</p>
+
+        <p id="timeoutMessage">
+            Press the button to display a message after 3 seconds.
+        </p>
+
+        <button onclick="startTimeout()">Start Message</button>
+        <button onclick="cancelTimeout()">Cancel</button>
+    </section>
+
+    <!-- 9. PASSWORD GENERATOR -->
+    <section id="password">
+        <h2>9. Password Generator</h2>
+        <p>Practice loops, strings, and random numbers.</p>
+
+        <label>
+            Password length:
+            <input type="number" id="passwordLength"
+                   min="4" max="64" value="12">
+        </label>
+
+        <br>
+
+        <label>
+            <input type="checkbox" id="lowercase" checked>
+            Lowercase
+        </label>
+
+        <label>
+            <input type="checkbox" id="uppercase" checked>
+            Uppercase
+        </label>
+
+        <label>
+            <input type="checkbox" id="numbers" checked>
+            Numbers
+        </label>
+
+        <label>
+            <input type="checkbox" id="symbols">
+            Symbols
+        </label>
+
+        <br>
+
+        <button onclick="generatePassword()">Generate Password</button>
+
+        <p id="passwordOutput" class="result"></p>
+    </section>
+
+    <!-- 10. DICE ROLLER -->
+    <section id="dice">
+        <h2>10. Dice Roller</h2>
+        <p>Practice Math.random(), arrays, and loops.</p>
+
+        <label>
+            Number of dice:
+            <input type="number" id="diceCount" min="1" max="12" value="2">
+        </label>
+
+        <button onclick="rollDice()">Roll Dice</button>
+
+        <p id="diceOutput" class="result">🎲</p>
+        <p id="diceTotal"></p>
+    </section>
+
+    <!-- 11. TEMPERATURE CONVERTER -->
+    <section id="temperature">
+        <h2>11. Temperature Converter</h2>
+        <p>Practice numeric input and conversion formulas.</p>
+
+        <input type="number" id="temperatureInput" placeholder="Temperature">
+
+        <select id="temperatureUnit">
+            <option value="C">Celsius to Fahrenheit</option>
+            <option value="F">Fahrenheit to Celsius</option>
+        </select>
+
+        <button onclick="convertTemperature()">Convert</button>
+
+        <p id="temperatureOutput" class="result"></p>
+    </section>
+
+    <!-- 12. NUMBER GUESSING GAME -->
+    <section id="guess">
+        <h2>12. Number Guessing Game</h2>
+        <p>Guess a random number between 1 and 100.</p>
+
+        <input type="number" id="guessInput" placeholder="Your guess"
+               min="1" max="100">
+
+        <button onclick="submitGuess()">Guess</button>
+        <button onclick="newGame()">New Game</button>
+
+        <p id="guessMessage" class="result">
+            I picked a number between 1 and 100.
+        </p>
+
+        <p id="guessAttempts">Attempts: 0</p>
+    </section>
+
+    <!-- 13. METHOD CHAINING -->
+    <section id="chaining">
+        <h2>13. Method Chaining</h2>
+        <p>Practice using multiple string methods in one expression.</p>
+
+        <input id="chainInput" value="  Hello JavaScript  ">
+        <button onclick="runChain()">Run Chain</button>
+
+        <p id="chainOutput" class="result"></p>
+
+        <p>Example: trim → lowercase → replace spaces with hyphens.</p>
+    </section>
+
+    <!-- 14. DAY REMINDER -->
+    <section id="reminder">
+        <h2>14. Day Reminder</h2>
+        <p>Practice switch statements and day selection.</p>
+
+        <select id="daySelect">
+            <option value="0">Sunday</option>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+        </select>
+
+        <button onclick="showReminder()">Show Reminder</button>
+
+        <p id="dayReminder" class="result"></p>
+    </section>
+
+    <!-- 15. PAYMENT SELECTOR -->
+    <section id="payment">
+        <h2>15. Payment Selector</h2>
+        <p>Practice radio buttons and conditional statements.</p>
+
+        <label>
+            <input type="radio" name="payment" value="Credit Card" checked>
+            Credit Card
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="Debit Card">
+            Debit Card
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="PayPal">
+            PayPal
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="Cash">
+            Cash
+        </label>
+
+        <br>
+
+        <button onclick="confirmPayment()">Confirm Payment Method</button>
+
+        <p id="paymentResult" class="result"></p>
+    </section>
+
+</main>
+
+<footer>
+    JavaScript Practice Projects — All in One HTML File
+</footer>
+
+<script>
+"use strict";
+
+// ====================================
+// 1. IMAGE SLIDER
+// ====================================
+
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function changeSlide(direction) {
+    slides[currentSlide].classList.remove("active");
+
+    currentSlide =
+        (currentSlide + direction + slides.length) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+
+    document.getElementById("slideStatus").textContent =
+        `${currentSlide + 1} / ${slides.length}`;
+}
+
+
+// ====================================
+// 2. ROCK PAPER SCISSORS
+// ====================================
+
+let youScore = 0;
+let computerScore = 0;
+let ties = 0;
+
+function playRPS(playerChoice) {
+    const choices = ["rock", "paper", "scissors"];
+
+    const computerChoice =
+        choices[Math.floor(Math.random() * choices.length)];
+
+    let message;
+
+    if (playerChoice === computerChoice) {
+        ties++;
+        message = `Tie! Both chose ${playerChoice}.`;
+    } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+    ) {
+        youScore++;
+        message = `You win! ${playerChoice} beats ${computerChoice}.`;
+    } else {
+        computerScore++;
+        message = `Computer wins! ${computerChoice} beats ${playerChoice}.`;
+    }
+
+    document.getElementById("rpsResult").textContent = message;
+
+    document.getElementById("rpsScore").textContent =
+        `You: ${youScore} | Computer: ${computerScore} | Ties: ${ties}`;
+}
+
+function resetRPS() {
+    youScore = 0;
+    computerScore = 0;
+    ties = 0;
+
+    document.getElementById("rpsResult").textContent =
+        "Choose your move.";
+
+    document.getElementById("rpsScore").textContent =
+        "You: 0 | Computer: 0 | Ties: 0";
+}
+
+
+// ====================================
+// 3. EVENT BUTTONS
+// ====================================
+
+let clickCount = 0;
+
+function changeText() {
+    document.getElementById("eventText").textContent =
+        "The text has been changed using JavaScript!";
+}
+
+function changeColor() {
+    const element = document.getElementById("eventText");
+
+    element.style.color =
+        element.style.color === "red" ? "#172033" : "red";
+}
+
+function countClicks() {
+    clickCount++;
+
+    document.querySelector("#events button:nth-of-type(3)")
+        .textContent = `Click Count: ${clickCount}`;
+}
+
+
+// ====================================
+// 4. DOM LISTS
+// ====================================
+
+function addItem() {
+    const input = document.getElementById("listInput");
+    const value = input.value.trim();
+
+    if (value === "") {
+        alert("Please enter an item.");
+        return;
+    }
+
+    const li = document.createElement("li");
+    li.textContent = value;
+
+    document.getElementById("itemList").appendChild(li);
+
+    input.value = "";
+    input.focus();
+}
+
+function clearItems() {
+    document.getElementById("itemList").replaceChildren();
+}
+
+
+// ====================================
+// 5. CALCULATOR
+// ====================================
+
+function calculate() {
+    const firstInput = document.getElementById("num1").value;
+    const secondInput = document.getElementById("num2").value;
+
+    const resultElement = document.getElementById("calcResult");
+
+    if (firstInput.trim() === "" || secondInput.trim() === "") {
+        resultElement.textContent = "Please enter both numbers.";
+        return;
+    }
+
+    const num1 = Number(firstInput);
+    const num2 = Number(secondInput);
+    const operator = document.getElementById("operator").value;
+
+    let result;
+
+    switch (operator) {
+        case "+":
+            result = num1 + num2;
+            break;
+
+        case "-":
+            result = num1 - num2;
+            break;
+
+        case "*":
+            result = num1 * num2;
+            break;
+
+        case "/":
+            if (num2 === 0) {
+                resultElement.textContent = "Cannot divide by zero.";
+                return;
+            }
+
+            result = num1 / num2;
+            break;
+
+        case "%":
+            if (num2 === 0) {
+                resultElement.textContent = "Cannot calculate remainder with zero.";
+                return;
+            }
+
+            result = num1 % num2;
+            break;
+    }
+
+    resultElement.textContent = `Result: ${result}`;
+}
+
+
+// ====================================
+// 6. STOPWATCH
+// ====================================
+
+let stopwatchInterval = null;
+let stopwatchStartTime = 0;
+let elapsedTime = 0;
+
+function updateStopwatch() {
+    const totalTime =
+        elapsedTime + (Date.now() - stopwatchStartTime);
+
+    const minutes = Math.floor(totalTime / 60000);
+    const seconds = Math.floor((totalTime % 60000) / 1000);
+    const tenths = Math.floor((totalTime % 1000) / 100);
+
+    document.getElementById("stopwatchDisplay").textContent =
+        `${String(minutes).padStart(2, "0")}:` +
+        `${String(seconds).padStart(2, "0")}.` +
+        `${tenths}`;
+}
+
+function startStopwatch() {
+    if (stopwatchInterval !== null) return;
+
+    stopwatchStartTime = Date.now();
+
+    stopwatchInterval = setInterval(updateStopwatch, 100);
+}
+
+function stopStopwatch() {
+    if (stopwatchInterval === null) return;
+
+    elapsedTime += Date.now() - stopwatchStartTime;
+
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = null;
+
+    updateStopwatch();
+}
+
+function resetStopwatch() {
+    clearInterval(stopwatchInterval);
+
+    stopwatchInterval = null;
+    stopwatchStartTime = 0;
+    elapsedTime = 0;
+
+    updateStopwatch();
+}
+
+
+// ====================================
+// 7. DIGITAL CLOCK
+// ====================================
+
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("digitalClock").textContent =
+        now.toLocaleTimeString();
+
+    document.getElementById("clockDate").textContent =
+        now.toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// ====================================
+// 8. SETTIMEOUT DEMO
+// ====================================
+
+let timeoutId = null;
+
+function startTimeout() {
+    clearTimeout(timeoutId);
+
+    document.getElementById("timeoutMessage").textContent =
+        "Waiting 3 seconds...";
+
+    timeoutId = setTimeout(() => {
+        document.getElementById("timeoutMessage").textContent =
+            "Hello! The message appeared after 3 seconds.";
+
+        timeoutId = null;
+    }, 3000);
+}
+
+function cancelTimeout() {
+    clearTimeout(timeoutId);
+    timeoutId = null;
+
+    document.getElementById("timeoutMessage").textContent =
+        "Pending message cancelled.";
+}
+
+
+// ====================================
+// 9. PASSWORD GENERATOR
+// ====================================
+
+function generatePassword() {
+    const lengthInput =
+        Number(document.getElementById("passwordLength").value);
+
+    const length = Math.max(4, Math.min(64, lengthInput || 12));
+
+    let characters = "";
+    const characterGroups = [];
+
+    if (document.getElementById("lowercase").checked) {
+        const group = "abcdefghijklmnopqrstuvwxyz";
+        characters += group;
+        characterGroups.push(group);
+    }
+
+    if (document.getElementById("uppercase").checked) {
+        const group = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        characters += group;
+        characterGroups.push(group);
+    }
+
+    if (document.getElementById("numbers").checked) {
+        const group = "0123456789";
+        characters += group;
+        characterGroups.push(group);
+    }
+
+    if (document.getElementById("symbols").checked) {
+        const group = "!@#$%^&*()-_=+?";
+        characters += group;
+        characterGroups.push(group);
+    }
+
+    const output = document.getElementById("passwordOutput");
+
+    if (characters === "") {
+        output.textContent = "Select at least one character type.";
+        return;
+    }
+
+    let password = characterGroups.map(group => {
+        return group[Math.floor(Math.random() * group.length)];
+    });
+
+    while (password.length < length) {
+        password.push(
+            characters[Math.floor(Math.random() * characters.length)]
+        );
+    }
+
+    // Shuffle the password characters.
+    for (let i = password.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [password[i], password[j]] = [password[j], password[i]];
+    }
+
+    output.textContent = password.slice(0, length).join("");
+}
+
+
+// ====================================
+// 10. DICE ROLLER
+// ====================================
+
+function rollDice() {
+    const countInput = Number(document.getElementById("diceCount").value);
+    const count = Math.max(1, Math.min(12, countInput || 1));
+
+    const rolls = [];
+
+    for (let i = 0; i < count; i++) {
+        const roll = Math.floor(Math.random() * 6) + 1;
+        rolls.push(roll);
+    }
+
+    document.getElementById("diceOutput").textContent =
+        rolls.map(number => `🎲 ${number}`).join(" | ");
+
+    const total = rolls.reduce((sum, number) => sum + number, 0);
+
+    document.getElementById("diceTotal").textContent =
+        `Total: ${total}`;
+}
+
+
+// ====================================
+// 11. TEMPERATURE CONVERTER
+// ====================================
+
+function convertTemperature() {
+    const rawValue =
+        document.getElementById("temperatureInput").value;
+
+    const output = document.getElementById("temperatureOutput");
+
+    if (rawValue.trim() === "") {
+        output.textContent = "Please enter a temperature.";
+        return;
+    }
+
+    const temperature = Number(rawValue);
+    const unit = document.getElementById("temperatureUnit").value;
+
+    if (unit === "C") {
+        const fahrenheit = (temperature * 9 / 5) + 32;
+
+        output.textContent =
+            `${temperature}°C = ${fahrenheit.toFixed(2)}°F`;
+    } else {
+        const celsius = (temperature - 32) * 5 / 9;
+
+        output.textContent =
+            `${temperature}°F = ${celsius.toFixed(2)}°C`;
+    }
+}
+
+
+// ====================================
+// 12. NUMBER GUESSING GAME
+// ====================================
+
+let secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+let gameOver = false;
+
+function submitGuess() {
+    const input = document.getElementById("guessInput");
+    const message = document.getElementById("guessMessage");
+
+    const value = Number(input.value);
+
+    if (gameOver) {
+        message.textContent = "Start a new game to play again.";
+        return;
+    }
+
+    if (
+        input.value.trim() === "" ||
+        !Number.isInteger(value) ||
+        value < 1 ||
+        value > 100
+    ) {
+        message.textContent =
+            "Enter a whole number between 1 and 100.";
+        return;
+    }
+
+    attempts++;
+
+    document.getElementById("guessAttempts").textContent =
+        `Attempts: ${attempts}`;
+
+    if (value === secretNumber) {
+        message.textContent =
+            `Correct! The number was ${secretNumber}.`;
+
+        gameOver = true;
+    } else if (value < secretNumber) {
+        message.textContent = "Too low! Try again.";
+    } else {
+        message.textContent = "Too high! Try again.";
+    }
+
+    input.select();
+}
+
+document.getElementById("guessInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        submitGuess();
+    }
+});
+
+function newGame() {
+    secretNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    gameOver = false;
+
+    document.getElementById("guessInput").value = "";
+
+    document.getElementById("guessMessage").textContent =
+        "New number chosen. Guess between 1 and 100.";
+
+    document.getElementById("guessAttempts").textContent =
+        "Attempts: 0";
+}
+
+
+// ====================================
+// 13. METHOD CHAINING
+// ====================================
+
+function runChain() {
+    const input = document.getElementById("chainInput").value;
+
+    const result = input
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+    document.getElementById("chainOutput").textContent =
+        `Result: ${result}`;
+}
+
+
+// ====================================
+// 14. DAY REMINDER
+// ====================================
+
+function showReminder() {
+    const day = Number(document.getElementById("daySelect").value);
+
+    let reminder;
+
+    switch (day) {
+        case 0:
+            reminder = "Sunday: Rest and prepare for the week.";
+            break;
+
+        case 1:
+            reminder = "Monday: Set your goals for the week.";
+            break;
+
+        case 2:
+            reminder = "Tuesday: Keep making steady progress.";
+            break;
+
+        case 3:
+            reminder = "Wednesday: Review your progress.";
+            break;
+
+        case 4:
+            reminder = "Thursday: Finish important tasks.";
+            break;
+
+        case 5:
+            reminder = "Friday: Wrap up your work.";
+            break;
+
+        case 6:
+            reminder = "Saturday: Enjoy your hobbies and free time.";
+            break;
+
+        default:
+            reminder = "Invalid day.";
+    }
+
+    document.getElementById("dayReminder").textContent = reminder;
+}
+
+
+// ====================================
+// 15. PAYMENT SELECTOR
+// ====================================
+
+function confirmPayment() {
+    const selected = document.querySelector(
+        'input[name="payment"]:checked'
+    );
+
+    document.getElementById("paymentResult").textContent =
+        `Selected payment method: ${selected.value}.`;
+}
+</script>
+
+</body>
+</html>
